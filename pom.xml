@@ -10,6 +10,7 @@
 
     <properties>
         <spring.version>4.3.13.RELEASE</spring.version>
+        <apache.comms.lang3>3.6</apache.comms.lang3>
     </properties>
 
     <dependencies>
@@ -18,6 +19,12 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${apache.comms.lang3}</version>
         </dependency>
 
         <dependency>
