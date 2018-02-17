@@ -11,6 +11,7 @@
     <properties>
         <spring.version>4.3.13.RELEASE</spring.version>
         <apache.comms.lang3>3.6</apache.comms.lang3>
+        <java.version>1.6</java.version>
     </properties>
 
     <dependencies>
@@ -35,4 +36,18 @@
         </dependency>
 
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
