@@ -12,6 +12,7 @@
         <spring.version>4.3.13.RELEASE</spring.version>
         <apache.comms.lang3>3.6</apache.comms.lang3>
         <java.version>1.6</java.version>
+        <joda.time.version>2.9.9</joda.time.version>
         <junit.version>4.12</junit.version>
         <mockito.version>1.10.19</mockito.version>
     </properties>
@@ -28,6 +29,12 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${apache.comms.lang3}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda.time.version}</version>
         </dependency>
 
         <dependency>
