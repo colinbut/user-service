@@ -20,7 +20,3 @@ create table if not exists users (
 
 --  dummy data
 insert into users (ssn, forename, surname, dob, address, postcode, city, country) values ('000-####-001-###', 'forename', 'surname', '1999-01-30', '85 Address Road', 'ABC 123', 'Paris', 'France');
-
-// truncate table users;
-
-// drop table if exists users;
