@@ -5,18 +5,28 @@
  */
 package com.mycompany.user.controller.endpoint;
 
+import com.mycompany.user.model.User;
+import com.mycompany.user.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class UserEndpoint {
 
+    @Autowired
+    private UserService userService;
+
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity getUsers() {
-        return ResponseEntity.ok().build();
+        List<User> users = userService.getUsers();
+
+        return ResponseEntity.ok(users);
     }
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
