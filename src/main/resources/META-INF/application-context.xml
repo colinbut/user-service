@@ -11,4 +11,6 @@
 
     <context:annotation-config/>
 
+    <mvc:annotation-driven/>
+
 </beans>
