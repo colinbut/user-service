@@ -16,6 +16,7 @@
         <joda.time.version>2.9.9</joda.time.version>
         <junit.version>4.12</junit.version>
         <mockito.version>1.10.19</mockito.version>
+        <jetty.version>9.4.3.v20170317</jetty.version>
     </properties>
 
     <dependencies>
@@ -30,6 +31,24 @@
             <groupId>com.datastax.cassandra</groupId>
             <artifactId>cassandra-driver-core</artifactId>
             <version>3.4.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-server</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>${jetty.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-webapp</artifactId>
+            <version>${jetty.version}</version>
         </dependency>
 
         <dependency>
