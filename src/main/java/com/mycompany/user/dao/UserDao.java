@@ -1,0 +1,21 @@
+/*
+ * |-------------------------------------------------
+ * | Copyright © 2018 Colin But. All rights reserved. 
+ * |-------------------------------------------------
+ */
+package com.mycompany.user.dao;
+
+import com.mycompany.user.model.User;
+
+import java.util.List;
+
+public interface UserDao {
+
+    List<User> getUsers();
+
+    User getUser(int userId);
+
+    void saveUser(User user);
+
+    void deleteUser(int userId);
+}
