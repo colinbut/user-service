@@ -24,6 +24,9 @@ public class UserDaoImpl implements UserDao {
 
     private static final String HOST = "127.0.0.1";
 
+    private static final String SELECT_ALL_USERS_QUERY = "select * from userKS.users";
+    private static final String SELECT_USER_WITH_SSN = "select * from userKS.users where ssn = ";
+
     private Cluster cluster = null;
     private Session session = null;
 
@@ -45,7 +48,7 @@ public class UserDaoImpl implements UserDao {
 
         List<User> users = new ArrayList<User>();
 
-        ResultSet rs = session.execute("select * from userKS.users");
+        ResultSet rs = session.execute(SELECT_ALL_USERS_QUERY);
 
         for (Row row : rs) {
             User user = createUser(row);
@@ -57,7 +60,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUser(String ssn) {
-        ResultSet rs = session.execute("select * from userKS.users where ssn = " + ssn);
+        ResultSet rs = session.execute(SELECT_USER_WITH_SSN + ssn);
         Row row = rs.one();
 
         User user = createUser(row);
