@@ -48,19 +48,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet rs = session.execute("select * from userKS.users");
 
         for (Row row : rs) {
-            User user = new User();
-            user.setSsn(row.getString("ssn"));
-            user.setFirstname(row.getString("forename"));
-            user.setSurname(row.getString("surname"));
-
-            LocalDate dateFromDB = row.getDate("dob");
-            DateTime dateTime = new DateTime(dateFromDB.getYear(), dateFromDB.getMonth(), dateFromDB.getDay(), 0, 0, 0);
-
-            user.setDob(dateTime.toDate());
-            user.setAddress(row.getString("address"));
-            user.setPostcode(row.getString("postcode"));
-            user.setCity(row.getString("city"));
-            user.setCountry(row.getString("country"));
+            User user = createUser(row);
             users.add(user);
         }
 
@@ -72,19 +60,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet rs = session.execute("select * from userKS.users where ssn = " + ssn);
         Row row = rs.one();
 
-        User user = new User();
-        user.setSsn(row.getString("ssn"));
-        user.setFirstname(row.getString("forename"));
-        user.setSurname(row.getString("surname"));
-
-        LocalDate dateFromDB = row.getDate("dob");
-        DateTime dateTime = new DateTime(dateFromDB.getYear(), dateFromDB.getMonth(), dateFromDB.getDay(), 0, 0, 0);
-
-        user.setDob(dateTime.toDate());
-        user.setAddress(row.getString("address"));
-        user.setPostcode(row.getString("postcode"));
-        user.setCity(row.getString("city"));
-        user.setCountry(row.getString("country"));
+        User user = createUser(row);
 
         return user;
     }
@@ -98,4 +74,22 @@ public class UserDaoImpl implements UserDao {
     public void deleteUser(int userId) {
         throw new UnsupportedOperationException("Not Yet Implemented");
     }
+
+    private User createUser(Row row) {
+        User user = new User();
+        user.setSsn(row.getString("ssn"));
+        user.setFirstname(row.getString("forename"));
+        user.setSurname(row.getString("surname"));
+
+        LocalDate dateFromDB = row.getDate("dob");
+        DateTime dateTime = new DateTime(dateFromDB.getYear(), dateFromDB.getMonth(), dateFromDB.getDay(), 0, 0, 0);
+
+        user.setDob(dateTime.toDate());
+        user.setAddress(row.getString("address"));
+        user.setPostcode(row.getString("postcode"));
+        user.setCity(row.getString("city"));
+        user.setCountry(row.getString("country"));
+        return user;
+    }
+
 }
