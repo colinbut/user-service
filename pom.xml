@@ -121,7 +121,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <finalName>Snowman</finalName>
+                            <finalName>User Service</finalName>
                             <shadedArtifactAttached>true</shadedArtifactAttached>
                             <shadedClassifierName>jar-with-dependencies</shadedClassifierName>
                             <transformers>
