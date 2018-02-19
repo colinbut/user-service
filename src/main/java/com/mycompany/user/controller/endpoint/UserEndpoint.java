@@ -28,7 +28,6 @@ public class UserEndpoint {
     public ResponseEntity getUsers() {
         List<User> users = userService.getUsers();
 
-
         return ResponseEntity.ok(users);
     }
 
@@ -37,8 +36,8 @@ public class UserEndpoint {
         return ResponseEntity.ok().build();
     }
 
-    @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-    public ResponseEntity getUser(@PathVariable("userId") String ssn) {
+    @RequestMapping(value = "/user/{ssn}", method = RequestMethod.GET)
+    public ResponseEntity getUser(@PathVariable("ssn") String ssn) {
         User user = userService.getUser(ssn);
 
         UserResource userResource = UserResourceMapper.mapUserToUserResource(user);
