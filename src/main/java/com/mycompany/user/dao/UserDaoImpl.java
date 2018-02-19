@@ -69,7 +69,24 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUser(int userId) {
-        throw new UnsupportedOperationException("Not Yet Implemented");
+        ResultSet rs = session.execute("select * from userKS.users");
+        Row row = rs.one();
+
+        User user = new User();
+        user.setSsn(row.getString("ssn"));
+        user.setFirstname(row.getString("forename"));
+        user.setSurname(row.getString("surname"));
+
+        LocalDate dateFromDB = row.getDate("dob");
+        DateTime dateTime = new DateTime(dateFromDB.getYear(), dateFromDB.getMonth(), dateFromDB.getDay(), 0, 0, 0);
+
+        user.setDob(dateTime.toDate());
+        user.setAddress(row.getString("address"));
+        user.setPostcode(row.getString("postcode"));
+        user.setCity(row.getString("city"));
+        user.setCountry(row.getString("country"));
+
+        return user;
     }
 
     @Override
