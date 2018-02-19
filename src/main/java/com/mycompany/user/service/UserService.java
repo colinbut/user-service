@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface UserService {
     List<User> getUsers();
-    User getUser(int userId);
+    User getUser(String ssn);
     void createUser(User user);
     void updateUser(User user);
     void deleteUser(int userId);

@@ -38,8 +38,8 @@ public class UserEndpoint {
     }
 
     @RequestMapping(value = "/user/{userId}", method = RequestMethod.GET)
-    public ResponseEntity getUser(@PathVariable("userId") Integer userId) {
-        User user = userService.getUser(userId);
+    public ResponseEntity getUser(@PathVariable("userId") String ssn) {
+        User user = userService.getUser(ssn);
 
         UserResource userResource = UserResourceMapper.mapUserToUserResource(user);
 

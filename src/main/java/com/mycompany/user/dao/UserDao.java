@@ -13,7 +13,7 @@ public interface UserDao {
 
     List<User> getUsers();
 
-    User getUser(int userId);
+    User getUser(String ssn);
 
     void saveUser(User user);
 

@@ -68,8 +68,8 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public User getUser(int userId) {
-        ResultSet rs = session.execute("select * from userKS.users");
+    public User getUser(String ssn) {
+        ResultSet rs = session.execute("select * from userKS.users where ssn = " + ssn);
         Row row = rs.one();
 
         User user = new User();
