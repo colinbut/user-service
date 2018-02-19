@@ -26,6 +26,8 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class UserEndpointUTest {
 
+    private static final String SSN = "###-0000-###-0001";
+
     @Mock
     private UserService userService;
 
@@ -65,10 +67,9 @@ public class UserEndpointUTest {
 
         User user = UserTestHelper.getUser();
 
-        int userId = 1;
-        Mockito.when(userService.getUser(userId)).thenReturn(user);
+        Mockito.when(userService.getUser(SSN)).thenReturn(user);
 
-        ResponseEntity responseEntity = classInTest.getUser(userId);
+        ResponseEntity responseEntity = classInTest.getUser(SSN);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertNotNull(responseEntity.getBody());
@@ -86,13 +87,11 @@ public class UserEndpointUTest {
 
     @Test
     public void testDeleteUser() throws Exception {
+        Mockito.doNothing().when(userService).deleteUser(SSN);
 
-        int userId = 1;
-        Mockito.doNothing().when(userService).deleteUser(userId);
+        classInTest.deleteUser(SSN);
 
-        classInTest.deleteUser(userId);
-
-        Mockito.verify(userService, Mockito.times(1)).deleteUser(userId);
+        Mockito.verify(userService, Mockito.times(1)).deleteUser(SSN);
     }
 
     @Test

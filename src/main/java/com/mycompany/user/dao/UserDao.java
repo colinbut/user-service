@@ -17,5 +17,5 @@ public interface UserDao {
 
     void saveUser(User user);
 
-    void deleteUser(int userId);
+    void deleteUser(String ssn);
 }

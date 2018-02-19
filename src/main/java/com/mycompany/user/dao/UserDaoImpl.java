@@ -74,7 +74,7 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public void deleteUser(int userId) {
+    public void deleteUser(String ssn) {
         throw new UnsupportedOperationException("Not Yet Implemented");
     }
 

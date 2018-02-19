@@ -46,8 +46,9 @@ public class UserEndpoint {
         return ResponseEntity.ok(userResource);
     }
 
-    @RequestMapping(value = "/user/{userId}/delete", method = RequestMethod.DELETE)
-    public ResponseEntity deleteUser(@PathVariable("userId") Integer userId) {
+    @RequestMapping(value = "/user/{ssn}/delete", method = RequestMethod.DELETE)
+    public ResponseEntity deleteUser(@PathVariable("ssn") String ssn) {
+        userService.deleteUser(ssn);
         return ResponseEntity.ok().build();
     }
 

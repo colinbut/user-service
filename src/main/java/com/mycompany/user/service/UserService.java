@@ -14,5 +14,5 @@ public interface UserService {
     User getUser(String ssn);
     void createUser(User user);
     void updateUser(User user);
-    void deleteUser(int userId);
+    void deleteUser(String ssn);
 }

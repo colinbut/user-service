@@ -39,7 +39,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteUser(int userId) {
-        userDao.deleteUser(userId);
+    public void deleteUser(String ssn) {
+        userDao.deleteUser(ssn);
     }
 }
