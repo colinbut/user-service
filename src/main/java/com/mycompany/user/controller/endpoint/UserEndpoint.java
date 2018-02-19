@@ -52,7 +52,9 @@ public class UserEndpoint {
     }
 
     @RequestMapping(value = "/user/update", method = RequestMethod.POST)
-    public ResponseEntity updateUser() {
+    public ResponseEntity updateUser(UserResource userResource) {
+        User user = UserResourceMapper.mapUserResourceToUser(userResource);
+        userService.updateUser(user);
         return ResponseEntity.ok().build();
     }
 }
