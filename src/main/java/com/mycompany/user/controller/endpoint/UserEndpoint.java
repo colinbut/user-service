@@ -32,16 +32,16 @@ public class UserEndpoint {
     }
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
-    public ResponseEntity createUser() {
+    public ResponseEntity createUser(UserResource userResource) {
+        User user = UserResourceMapper.mapUserResourceToUser(userResource);
+        userService.createUser(user);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "/user/{ssn}", method = RequestMethod.GET)
     public ResponseEntity getUser(@PathVariable("ssn") String ssn) {
         User user = userService.getUser(ssn);
-
         UserResource userResource = UserResourceMapper.mapUserToUserResource(user);
-
         return ResponseEntity.ok(userResource);
     }
 
