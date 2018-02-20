@@ -27,8 +27,8 @@ public class UserEndpoint {
     @RequestMapping(value = "/users", method = RequestMethod.GET)
     public ResponseEntity getUsers() {
         List<User> users = userService.getUsers();
-
-        return ResponseEntity.ok(users);
+        List<UserResource> userResources = UserResourceMapper.mapUsersToUserResources(users);
+        return ResponseEntity.ok(userResources);
     }
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
