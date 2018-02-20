@@ -8,6 +8,9 @@ package com.mycompany.user.controller.mapper;
 import com.mycompany.user.controller.resource.UserResource;
 import com.mycompany.user.model.User;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public final class UserResourceMapper {
 
     private UserResourceMapper(){
@@ -37,5 +40,21 @@ public final class UserResourceMapper {
         user.setCity(userResource.getCity());
         user.setCountry(userResource.getCountry());
         return user;
+    }
+
+    public static List<UserResource> mapUsersToUserResources(List<User> users) {
+        List<UserResource> userResources = new ArrayList<UserResource>();
+        for (User user : users){
+            userResources.add(mapUserToUserResource(user));
+        }
+        return userResources;
+    }
+
+    public static List<User> mapUserResourcesToUsers(List<UserResource> userResources) {
+        List<User> users = new ArrayList<User>();
+        for (UserResource userResource : userResources) {
+            users.add(mapUserResourceToUser(userResource));
+        }
+        return users;
     }
 }
