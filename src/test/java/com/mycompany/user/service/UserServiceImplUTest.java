@@ -23,6 +23,7 @@ import static org.junit.Assert.*;
 @RunWith(MockitoJUnitRunner.class)
 public class UserServiceImplUTest {
 
+    private static final String SSN = "###-0000-####-0001";
     @Mock
     private UserDao userDao;
 
@@ -44,13 +45,11 @@ public class UserServiceImplUTest {
 
     @Test
     public void testSetUser() throws Exception {
-        int userId = 1;
-
         User user = getUser();
 
-        Mockito.when(userDao.getUser(userId)).thenReturn(user);
+        Mockito.when(userDao.getUser(SSN)).thenReturn(user);
 
-        User actualUser = classInTest.getUser(userId);
+        User actualUser = classInTest.getUser(SSN);
 
         assertEquals(user, actualUser);
     }
@@ -79,13 +78,11 @@ public class UserServiceImplUTest {
 
     @Test
     public void testDeleteUser() throws Exception {
-        int userId = 1;
+        Mockito.doNothing().when(userDao).deleteUser(SSN);
 
-        Mockito.doNothing().when(userDao).deleteUser(userId);
+        classInTest.deleteUser(SSN);
 
-        classInTest.deleteUser(userId);
-
-        Mockito.verify(userDao, Mockito.times(1)).deleteUser(userId);
+        Mockito.verify(userDao, Mockito.times(1)).deleteUser(SSN);
     }
 
 }

@@ -56,7 +56,8 @@ public class UserEndpointUTest {
 
         Mockito.doNothing().when(userService).createUser(user);
 
-        ResponseEntity responseEntity = classInTest.createUser();
+        UserResource userResource = new UserResource();
+        ResponseEntity responseEntity = classInTest.createUser(userResource);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Mockito.verify(userService, Mockito.times(1)).createUser(user);
@@ -100,7 +101,9 @@ public class UserEndpointUTest {
 
         Mockito.doNothing().when(userService).updateUser(user);
 
-        ResponseEntity responseEntity = classInTest.createUser();
+        UserResource userResource = new UserResource();
+
+        ResponseEntity responseEntity = classInTest.updateUser(userResource);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Mockito.verify(userService, Mockito.times(1)).updateUser(user);
