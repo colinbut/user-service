@@ -24,8 +24,8 @@ public class UserDaoImpl implements UserDao {
 
     private static final String HOST = "127.0.0.1";
 
-    private static final String SELECT_ALL_USERS_QUERY = "select * from userKS.users";
-    private static final String SELECT_USER_WITH_SSN = "select * from userKS.users where ssn = ";
+    private static final String SELECT_ALL_USERS_QUERY = "SELECT * FROM userKS.USERS";
+    private static final String SELECT_USER_WITH_SSN = "SELECT * FROM userKS.USERS where SSN = ";
 
     private Cluster cluster = null;
     private Session session = null;
