@@ -25,11 +25,11 @@ public class UserResourceMapperUTest {
 
         UserResource userResource = UserResourceMapper.mapUserToUserResource(user);
 
-        assertEquals("ssn", userResource.getSsn());
-        assertEquals("firstname", userResource.getFirstname());
-        assertEquals("surname", userResource.getSurname());
+        assertEquals("###-0000-###-0001", userResource.getSsn());
+        assertEquals("Firstname", userResource.getFirstname());
+        assertEquals("Surname", userResource.getSurname());
         assertEquals(new DateTime(2018, 1,1, 12, 0, 0).toDate(), userResource.getDob());
-        assertEquals("postcode", userResource.getPostcode());
+        assertEquals("Postcode", userResource.getPostcode());
         assertEquals("Address", userResource.getAddress());
         assertEquals("City", userResource.getCity());
         assertEquals("Country", userResource.getCountry());
@@ -43,12 +43,12 @@ public class UserResourceMapperUTest {
 
         User user = UserResourceMapper.mapUserResourceToUser(userResource);
 
-        assertEquals("ssn", user.getSsn());
-        assertEquals("firstname", user.getFirstname());
-        assertEquals("surname", user.getSurname());
+        assertEquals("###-0000-###-0001", user.getSsn());
+        assertEquals("Firstname", user.getFirstname());
+        assertEquals("Surname", user.getSurname());
         assertEquals(new DateTime(2018, 1,1, 12, 0, 0).toDate(), user.getDob());
-        assertEquals("postcode", user.getPostcode());
-        assertEquals("Adress", user.getAddress());
+        assertEquals("Postcode", user.getPostcode());
+        assertEquals("Address", user.getAddress());
         assertEquals("City", user.getCity());
         assertEquals("Country", user.getCountry());
 
@@ -90,6 +90,47 @@ public class UserResourceMapperUTest {
 
         assertNotNull(userResource1);
         assertNotNull(userResource2);
+
+        verifyUserMapped(user1, userResource1);
+        verifyUserMapped(user2, userResource2);
+    }
+
+    @Test
+    public void testMapUserResourcesToUsers() {
+        List<UserResource> userResources = new ArrayList<UserResource>();
+
+        UserResource userResource1 = new UserResource();
+        userResource1.setSsn("no.1");
+        userResource1.setFirstname("User 1 firstname");
+        userResource1.setSurname("User 1 surname");
+        userResource1.setDob(new DateTime(2018, 1,1,12,0,0).toDate());
+        userResource1.setAddress("User 1 address");
+        userResource1.setPostcode("User 1 postcode");
+        userResource1.setCity("User 1 city");
+        userResource1.setCountry("User 1 country");
+
+        UserResource userResource2 = new UserResource();
+        userResource2.setSsn("no.2");
+        userResource2.setFirstname("User 2 firstname");
+        userResource2.setSurname("User 2 surname");
+        userResource2.setDob(new DateTime(2018, 1,3,12,0,0).toDate());
+        userResource2.setAddress("User 2 address");
+        userResource2.setPostcode("User 2 postcode");
+        userResource2.setCity("User 2 city");
+        userResource2.setCountry("User 2 country");
+
+        userResources.add(userResource1);
+        userResources.add(userResource2);
+
+        List<User> users = UserResourceMapper.mapUserResourcesToUsers(userResources);
+
+        assertFalse(users.isEmpty());
+
+        User user1 = users.get(0);
+        User user2 = users.get(1);
+
+        assertNotNull(user1);
+        assertNotNull(user2);
 
         verifyUserMapped(user1, userResource1);
         verifyUserMapped(user2, userResource2);
