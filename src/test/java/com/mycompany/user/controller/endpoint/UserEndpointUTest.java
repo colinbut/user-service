@@ -13,10 +13,8 @@ import com.mycompany.user.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Matchers;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
@@ -47,12 +45,16 @@ public class UserEndpointUTest {
         List<User> userList = new ArrayList<User>();
         userList.add(UserTestHelper.getUser());
 
+        List<UserResource> userResourcesList = new ArrayList<UserResource>();
+        userResourcesList.add(UserTestHelper.getUserResource());
+
         Mockito.when(userService.getUsers()).thenReturn(userList);
+        PowerMockito.when(UserResourceMapper.mapUsersToUserResources(userList)).thenReturn(userResourcesList);
 
         ResponseEntity responseEntity = classInTest.getUsers();
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
-        assertEquals("", responseEntity.getBody());
+        assertEquals(userResourcesList, responseEntity.getBody());
     }
 
     @Test
@@ -107,16 +109,20 @@ public class UserEndpointUTest {
 
     @Test
     public void testUpdateUser() throws Exception {
-        User user = UserTestHelper.getUser();
-
-        Mockito.doNothing().when(userService).updateUser(user);
+        PowerMockito.mockStatic(UserResourceMapper.class);
 
         UserResource userResource = new UserResource();
+        User user = UserTestHelper.getUser();
+
+        PowerMockito.when(UserResourceMapper.mapUserResourceToUser(userResource)).thenReturn(user);
+        Mockito.doNothing().when(userService).updateUser(user);
 
         ResponseEntity responseEntity = classInTest.updateUser(userResource);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Mockito.verify(userService, Mockito.times(1)).updateUser(user);
+        PowerMockito.verifyStatic(UserResourceMapper.class);
+        UserResourceMapper.mapUserResourceToUser(userResource);
     }
 
 }
