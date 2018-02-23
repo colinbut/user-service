@@ -19,6 +19,7 @@
         <powermock.version>1.7.3</powermock.version>
         <jetty.version>9.4.3.v20170317</jetty.version>
         <jackson.databind.version>2.5.0</jackson.databind.version>
+        <slf4j.api.version>1.7.25</slf4j.api.version>
     </properties>
 
     <dependencies>
@@ -69,6 +70,12 @@
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
             <version>${joda.time.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.api.version}</version>
         </dependency>
 
         <dependency>
