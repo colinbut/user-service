@@ -9,6 +9,10 @@
 *.project
 *.classpath
 *.iml
+*.jar
+*.war
+*.tar
+*.gz
 
 
 .settings/*
