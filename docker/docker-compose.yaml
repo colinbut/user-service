@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    container_name: user-service-app
+    image: user-service:1.0-SNAPSHOT
+    depends_on:
+      - cassandra
+    environment:
+      - CASSANDRA_HOST=cassandra
+      - CASSANDRA_PORT=9042
+    ports:
+      - "8090:8090"
+  cassandra:
+    container_name: user-service-db-cassandra
+    image: cassandra:latest
