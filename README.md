@@ -18,3 +18,20 @@ Cassandra datastore (NoSQL)
 Below:
 
 ![Image of technology diagram](etc/diagram.png)
+
+
+### Build
+
+```bash
+mvn clean install
+```
+
+### Deployment
+
+```bash
+rm docker/user-service-1.0-SNAPSHOT-with-dependencies.jar
+cp target/user-service-1.0-SNAPSHOT-with-dependencies.jar docker/
+cd docker;
+docker build -t user-service:1.0-SNAPSHOT .
+docker-compose up
+```
