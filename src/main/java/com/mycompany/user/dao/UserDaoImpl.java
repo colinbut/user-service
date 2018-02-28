@@ -12,6 +12,7 @@ import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
 import com.mycompany.user.model.User;
 import org.joda.time.DateTime;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
@@ -22,17 +23,21 @@ import java.util.List;
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    private static final String HOST = "127.0.0.1";
-
     private static final String SELECT_ALL_USERS_QUERY = "SELECT * FROM userKS.USERS";
     private static final String SELECT_USER_WITH_SSN = "SELECT * FROM userKS.USERS where SSN = ";
 
     private Cluster cluster = null;
     private Session session = null;
 
+    @Value("${db.cassandra.host:127.0.0.1}")
+    private String dbHost;
+
     @PostConstruct
     public void setUp(){
-        cluster = Cluster.builder().addContactPoint(HOST).build();
+
+        String dbHost = System.getenv("CASSANDRA_HOST");
+
+        cluster = Cluster.builder().addContactPoint(dbHost).build();
         session = cluster.connect();
     }
 
