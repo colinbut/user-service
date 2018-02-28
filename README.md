@@ -6,7 +6,7 @@ Microservice for user functionality.
 
 Technologies:
 
-+ Java 6
++ Java 7
 + Spring Framework 4
 + Jetty
 + Datastax Cassandra Driver
