@@ -13,6 +13,8 @@ import com.datastax.driver.core.Session;
 import com.mycompany.user.dao.mapper.CassandraRowMapper;
 import com.mycompany.user.model.User;
 import org.joda.time.DateTime;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 
@@ -23,6 +25,8 @@ import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserDaoImpl.class);
 
     private static final String SELECT_ALL_USERS_QUERY = "SELECT * FROM userKS.USERS";
     private static final String SELECT_USER_WITH_SSN = "SELECT * FROM userKS.USERS where SSN = ";
@@ -58,10 +62,15 @@ public class UserDaoImpl implements UserDao {
 
         List<User> users = new ArrayList<User>();
 
+        LOGGER.info("Executing CQL: %s", SELECT_ALL_USERS_QUERY);
+
         ResultSet rs = session.execute(SELECT_ALL_USERS_QUERY);
 
         for (Row row : rs) {
             User user = userRowMapper.mapRow(row);
+
+            LOGGER.debug("Retrieved user %s from datastore", user);
+
             users.add(user);
         }
 
@@ -70,10 +79,17 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public User getUser(String ssn) {
-        ResultSet rs = session.execute(SELECT_USER_WITH_SSN + ssn);
+
+        String selectUserWithSsn = SELECT_USER_WITH_SSN + ssn;
+
+        LOGGER.info("Executing CQL: %s", selectUserWithSsn);
+
+        ResultSet rs = session.execute(selectUserWithSsn);
         Row row = rs.one();
 
         User user = userRowMapper.mapRow(row);
+
+        LOGGER.info("Retrieved user %s from datastore", user);
 
         return user;
     }
@@ -83,12 +99,18 @@ public class UserDaoImpl implements UserDao {
         String saveUserCql = String.format(INSERT_USER, user.getSsn(), user.getFirstname(), user.getSurname(),
             user.getDob(), user.getPostcode(), user.getAddress(), user.getCity(), user.getCountry());
 
+        LOGGER.info("Executing CQL: %s", saveUserCql);
+
         session.execute(saveUserCql);
     }
 
     @Override
     public void deleteUser(String ssn) {
-        session.execute(DELETE_USER);
+        String deleteUserWithSsn = DELETE_USER + ssn;
+
+        LOGGER.info("Executing CQL: %s" + deleteUserWithSsn);
+
+        session.execute(deleteUserWithSsn);
     }
 
     private static class UserRowMapper implements CassandraRowMapper{
