@@ -20,6 +20,7 @@
         <jetty.version>9.4.3.v20170317</jetty.version>
         <jackson.databind.version>2.5.0</jackson.databind.version>
         <slf4j.api.version>1.7.25</slf4j.api.version>
+        <userresourcelibrary.version>1.0</userresourcelibrary.version>
     </properties>
 
     <dependencies>
@@ -109,7 +110,7 @@
         <dependency>
             <groupId>com.mycompany.user.resource</groupId>
             <artifactId>user-resource-library</artifactId>
-            <version>1.0</version>
+            <version>${userresourcelibrary.version}</version>
         </dependency>
 
     </dependencies>
