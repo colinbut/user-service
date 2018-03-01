@@ -10,6 +10,7 @@ import com.datastax.driver.core.LocalDate;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.Row;
 import com.datastax.driver.core.Session;
+import com.mycompany.user.dao.mapper.CassandraRowMapper;
 import com.mycompany.user.model.User;
 import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Value;
@@ -31,6 +32,8 @@ public class UserDaoImpl implements UserDao {
 
     @Value("${db.cassandra.host:127.0.0.1}")
     private String dbHost;
+
+    private UserRowMapper userRowMapper = new UserRowMapper();
 
     @PostConstruct
     public void setUp(){
@@ -56,7 +59,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet rs = session.execute(SELECT_ALL_USERS_QUERY);
 
         for (Row row : rs) {
-            User user = createUser(row);
+            User user = userRowMapper.mapRow(row);
             users.add(user);
         }
 
@@ -68,7 +71,7 @@ public class UserDaoImpl implements UserDao {
         ResultSet rs = session.execute(SELECT_USER_WITH_SSN + ssn);
         Row row = rs.one();
 
-        User user = createUser(row);
+        User user = userRowMapper.mapRow(row);
 
         return user;
     }
@@ -83,21 +86,25 @@ public class UserDaoImpl implements UserDao {
         throw new UnsupportedOperationException("Not Yet Implemented");
     }
 
-    private User createUser(Row row) {
-        User user = new User();
-        user.setSsn(row.getString("ssn"));
-        user.setFirstname(row.getString("forename"));
-        user.setSurname(row.getString("surname"));
+    private static class UserRowMapper implements CassandraRowMapper{
 
-        LocalDate dateFromDB = row.getDate("dob");
-        DateTime dateTime = new DateTime(dateFromDB.getYear(), dateFromDB.getMonth(), dateFromDB.getDay(), 0, 0, 0);
+        @Override
+        public User mapRow(Row row) {
+            User user = new User();
+            user.setSsn(row.getString("ssn"));
+            user.setFirstname(row.getString("forename"));
+            user.setSurname(row.getString("surname"));
 
-        user.setDob(dateTime.toDate());
-        user.setAddress(row.getString("address"));
-        user.setPostcode(row.getString("postcode"));
-        user.setCity(row.getString("city"));
-        user.setCountry(row.getString("country"));
-        return user;
+            LocalDate dateFromDB = row.getDate("dob");
+            DateTime dateTime = new DateTime(dateFromDB.getYear(), dateFromDB.getMonth(), dateFromDB.getDay(), 0, 0, 0);
+
+            user.setDob(dateTime.toDate());
+            user.setAddress(row.getString("address"));
+            user.setPostcode(row.getString("postcode"));
+            user.setCity(row.getString("city"));
+            user.setCountry(row.getString("country"));
+            return user;
+        }
     }
 
 }
