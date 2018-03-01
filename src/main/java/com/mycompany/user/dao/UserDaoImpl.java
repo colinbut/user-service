@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void deleteUser(String ssn) {
-        throw new UnsupportedOperationException("Not Yet Implemented");
+        session.execute(DELETE_USER);
     }
 
     private static class UserRowMapper implements CassandraRowMapper{
