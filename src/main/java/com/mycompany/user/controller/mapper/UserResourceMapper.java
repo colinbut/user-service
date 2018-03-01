@@ -5,8 +5,8 @@
  */
 package com.mycompany.user.controller.mapper;
 
-import com.mycompany.user.controller.resource.UserResource;
 import com.mycompany.user.model.User;
+import com.mycompany.user.resource.UserResource;
 
 import java.util.ArrayList;
 import java.util.List;

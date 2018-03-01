@@ -6,8 +6,8 @@
 package com.mycompany.user.controller.endpoint;
 
 import com.mycompany.user.controller.mapper.UserResourceMapper;
-import com.mycompany.user.controller.resource.UserResource;
 import com.mycompany.user.model.User;
+import com.mycompany.user.resource.UserResource;
 import com.mycompany.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
