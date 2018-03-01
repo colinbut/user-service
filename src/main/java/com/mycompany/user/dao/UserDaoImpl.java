@@ -26,6 +26,7 @@ public class UserDaoImpl implements UserDao {
 
     private static final String SELECT_ALL_USERS_QUERY = "SELECT * FROM userKS.USERS";
     private static final String SELECT_USER_WITH_SSN = "SELECT * FROM userKS.USERS where SSN = ";
+    private static final String DELETE_USER = "DELETE FROM userKS.USERS where SSN = ";
 
     private Cluster cluster = null;
     private Session session = null;
