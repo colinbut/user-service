@@ -80,7 +80,10 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void saveUser(User user) {
-        throw new UnsupportedOperationException("Not Yet Implemented");
+        String saveUserCql = String.format(INSERT_USER, user.getSsn(), user.getFirstname(), user.getSurname(),
+            user.getDob(), user.getPostcode(), user.getAddress(), user.getCity(), user.getCountry());
+
+        session.execute(saveUserCql);
     }
 
     @Override
