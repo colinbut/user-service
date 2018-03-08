@@ -16,7 +16,7 @@
     <context:property-placeholder location="classpath:application.properties" />
 
     <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <constructor-arg index="0" value="tcp://localhost:61616"/>
+        <constructor-arg index="0" value="${activemq.brokerUrl}"/>
     </bean>
 
     <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
