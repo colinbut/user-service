@@ -11,6 +11,7 @@
     <properties>
         <spring.version>4.3.13.RELEASE</spring.version>
         <cassandra.driver.version>3.4.0</cassandra.driver.version>
+        <activemq.spring.version>5.10.0</activemq.spring.version>
         <apache.comms.lang3.version>3.6</apache.comms.lang3.version>
         <java.version>1.7</java.version>
         <joda.time.version>2.9.9</joda.time.version>
@@ -47,7 +48,7 @@
         <dependency>
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-spring</artifactId>
-            <version>5.10.0</version>
+            <version>${activemq.spring.version}</version>
         </dependency>
 
         <dependency>
