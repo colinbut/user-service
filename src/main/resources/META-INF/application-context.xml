@@ -24,7 +24,7 @@
     </bean>
 
     <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
-        <constructor-arg index="0" value="queue_name"/>
+        <constructor-arg index="0" value="user-notification-queue"/>
     </bean>
 
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
