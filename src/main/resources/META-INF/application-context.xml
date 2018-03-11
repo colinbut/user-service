@@ -7,6 +7,8 @@
          http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <import resource="application-context-jms.xml"/>
+
     <context:component-scan base-package="com.mycompany.user"/>
 
     <context:annotation-config/>
@@ -14,22 +16,5 @@
     <mvc:annotation-driven/>
 
     <context:property-placeholder location="classpath:application.properties" />
-
-    <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
-        <constructor-arg index="0" value="${activemq.brokerUrl}"/>
-    </bean>
-
-    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
-        <constructor-arg ref="amqConnectionFactory"/>
-    </bean>
-
-    <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
-        <constructor-arg index="0" value="${user.notification.queue}"/>
-    </bean>
-
-    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-        <property name="connectionFactory" ref="connectionFactory"/>
-        <property name="defaultDestination" ref="queueDestination"/>
-    </bean>
 
 </beans>
