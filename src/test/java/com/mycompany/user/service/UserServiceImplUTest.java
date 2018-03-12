@@ -48,6 +48,7 @@ public class UserServiceImplUTest {
         List<User> actualUsersList = classInTest.getUsers();
 
         assertEquals(users, actualUsersList);
+        Mockito.verify(userDao, Mockito.times(1)).getUsers();
     }
 
     @Test
