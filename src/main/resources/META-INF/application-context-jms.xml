@@ -15,6 +15,10 @@
         <constructor-arg index="0" value="${user.notification.queue}"/>
     </bean>
 
+    <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg index="0" value="${user.event.topic}"/>
+    </bean>
+
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="defaultDestination" ref="queueDestination"/>
