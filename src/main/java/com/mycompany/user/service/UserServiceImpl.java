@@ -52,6 +52,8 @@ public class UserServiceImpl implements UserService {
 
         userDto.setAddress(addressDto);
 
+        // TODO atm just notify on user creation
+        // but ideally use this notification mechanism for some more advanced complex business process
         userNotificationService.sendUserNotification(userDto);
     }
 
