@@ -19,9 +19,14 @@
         <constructor-arg index="0" value="${user.event.topic}"/>
     </bean>
 
-    <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+    <bean id="userNotificationJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
         <property name="connectionFactory" ref="connectionFactory"/>
         <property name="defaultDestination" ref="queueDestination"/>
+    </bean>
+
+    <bean id="userEventJmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="defaultDestination" ref="topicDestination"/>
     </bean>
 
 </beans>

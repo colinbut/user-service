@@ -3,12 +3,14 @@
  * | Copyright © 2018 Colin But. All rights reserved. 
  * |-------------------------------------------------
  */
-package com.mycompany.user.jms;
+package com.mycompany.user.jms.impl;
 
 import com.mycompany.user.dto.UserDto;
+import com.mycompany.user.jms.UserNotificationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.jms.core.MessagePostProcessor;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ public class UserNotificationServiceImpl implements UserNotificationService {
     private static final Logger LOG = LoggerFactory.getLogger(UserNotificationServiceImpl.class);
 
     @Autowired
+    @Qualifier("userNotificationJmsTemplate")
     private JmsTemplate jmsTemplate;
 
     @Override
