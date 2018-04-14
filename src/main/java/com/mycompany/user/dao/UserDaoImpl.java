@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
 
         String dbHost = System.getenv("CASSANDRA_HOST");
 
-        cluster = Cluster.builder().addContactPoint(dbHost).build();
+        cluster = Cluster.builder().addContactPoint(dbHost == null ? this.dbHost : dbHost).build();
         session = cluster.connect();
     }
 
