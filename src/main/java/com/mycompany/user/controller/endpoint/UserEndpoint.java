@@ -12,6 +12,7 @@ import com.mycompany.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +33,7 @@ public class UserEndpoint {
     }
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
-    public ResponseEntity createUser(UserResource userResource) {
+    public ResponseEntity createUser(@RequestBody UserResource userResource) {
         User user = UserResourceMapper.mapUserResourceToUser(userResource);
         userService.createUser(user);
         return ResponseEntity.ok().build();
