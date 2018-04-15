@@ -5,7 +5,9 @@
  */
 package com.mycompany.user.dto;
 
-public class AddressDto {
+import java.io.Serializable;
+
+public class AddressDto implements Serializable {
     private String firstlineAddress;
     private String secondlineAddress;
     private String postcode;

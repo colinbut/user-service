@@ -5,9 +5,10 @@
  */
 package com.mycompany.user.dto;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class UserDto {
+public class UserDto implements Serializable {
 
     private String ssn;
     private String firstname;
