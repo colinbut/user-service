@@ -20,6 +20,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,8 @@ public class UserDaoImpl implements UserDao {
 
     private Cluster cluster = null;
     private Session session = null;
+
+    private SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
     @Value("${db.cassandra.host:127.0.0.1}")
     private String dbHost;
@@ -97,7 +100,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void saveUser(User user) {
         String saveUserCql = String.format(INSERT_USER, user.getSsn(), user.getFirstname(), user.getSurname(),
-            user.getDob(), user.getPostcode(), user.getAddress(), user.getCity(), user.getCountry());
+            formatter.format(user.getDob()), user.getPostcode(), user.getAddress(), user.getCity(), user.getCountry());
 
         LOGGER.info("Executing CQL: %s", saveUserCql);
 
