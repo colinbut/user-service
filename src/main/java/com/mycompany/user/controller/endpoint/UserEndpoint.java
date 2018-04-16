@@ -53,7 +53,7 @@ public class UserEndpoint {
     }
 
     @RequestMapping(value = "/user/update", method = RequestMethod.POST)
-    public ResponseEntity updateUser(UserResource userResource) {
+    public ResponseEntity updateUser(@RequestBody UserResource userResource) {
         User user = UserResourceMapper.mapUserResourceToUser(userResource);
         userService.updateUser(user);
         return ResponseEntity.ok().build();
