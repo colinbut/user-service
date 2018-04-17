@@ -27,9 +27,9 @@ public class UserEventSender {
         userEvent.setUserEventType(userEventType);
         userEvent.setUserDto(userDto);
 
-        LOGGER.debug("Created UserEvent: %s", userEvent);
+        LOGGER.debug("Created UserEvent: {}", userEvent);
 
-        LOGGER.info("Sending UserEvent: %s", userEvent);
+        LOGGER.info("Sending UserEvent: {}", userEvent);
 
         userEventService.sendUserEvent(userEvent);
     }

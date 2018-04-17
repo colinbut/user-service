@@ -65,14 +65,14 @@ public class UserDaoImpl implements UserDao {
 
         List<User> users = new ArrayList<User>();
 
-        LOGGER.info("Executing CQL: %s", SELECT_ALL_USERS_QUERY);
+        LOGGER.info("Executing CQL: {}", SELECT_ALL_USERS_QUERY);
 
         ResultSet rs = session.execute(SELECT_ALL_USERS_QUERY);
 
         for (Row row : rs) {
             User user = userRowMapper.mapRow(row);
 
-            LOGGER.debug("Retrieved user %s from datastore", user);
+            LOGGER.debug("Retrieved user {} from datastore", user);
 
             users.add(user);
         }
@@ -85,7 +85,7 @@ public class UserDaoImpl implements UserDao {
 
         String selectUserWithSsn = SELECT_USER_WITH_SSN + ssn;
 
-        LOGGER.info("Executing CQL: %s", selectUserWithSsn);
+        LOGGER.info("Executing CQL: {}", selectUserWithSsn);
 
         ResultSet rs = session.execute(selectUserWithSsn);
         Row row = rs.one();
@@ -102,7 +102,7 @@ public class UserDaoImpl implements UserDao {
         String saveUserCql = String.format(INSERT_USER, user.getSsn(), user.getFirstname(), user.getSurname(),
             formatter.format(user.getDob()), user.getPostcode(), user.getAddress(), user.getCity(), user.getCountry());
 
-        LOGGER.info("Executing CQL: %s", saveUserCql);
+        LOGGER.info("Executing CQL: {}", saveUserCql);
 
         session.execute(saveUserCql);
     }
@@ -111,7 +111,7 @@ public class UserDaoImpl implements UserDao {
     public void deleteUser(String ssn) {
         String deleteUserWithSsn = DELETE_USER + ssn;
 
-        LOGGER.info("Executing CQL: %s" + deleteUserWithSsn);
+        LOGGER.info("Executing CQL: {}" + deleteUserWithSsn);
 
         session.execute(deleteUserWithSsn);
     }
