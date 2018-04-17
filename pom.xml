@@ -22,6 +22,7 @@
         <jackson.databind.version>2.5.0</jackson.databind.version>
         <slf4j.api.version>1.7.25</slf4j.api.version>
         <userresourcelibrary.version>v1.0</userresourcelibrary.version>
+        <slf4j-log4j12.version>1.6.1</slf4j-log4j12.version>
     </properties>
 
     <repositories>
@@ -97,6 +98,12 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.api.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j-log4j12.version}</version>
         </dependency>
 
         <dependency>
