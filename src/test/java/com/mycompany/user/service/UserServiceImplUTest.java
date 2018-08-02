@@ -7,9 +7,7 @@ package com.mycompany.user.service;
 
 import com.mycompany.user.dao.UserDao;
 import com.mycompany.user.dto.UserDto;
-import com.mycompany.user.jms.UserEventService;
 import com.mycompany.user.jms.UserNotificationService;
-import com.mycompany.user.jms.event.UserEvent;
 import com.mycompany.user.jms.event.UserEventType;
 import com.mycompany.user.model.User;
 import org.junit.Test;
@@ -100,6 +98,9 @@ public class UserServiceImplUTest {
 
     @Test
     public void testDeleteUser() throws Exception {
+        User user = getUser();
+
+        Mockito.when(userDao.getUser(SSN)).thenReturn(user);
         Mockito.doNothing().when(userDao).deleteUser(SSN);
         Mockito.doNothing().when(userEventSender).sendUserEvent(Matchers.eq(UserEventType.DELETED), Matchers.any(UserDto.class));
 
