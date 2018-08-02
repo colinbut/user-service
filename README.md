@@ -27,6 +27,31 @@ Below:
 mvn clean install
 ```
 
+### Run locally
+
+This method runs user-service locally in your own development machine with the use of a deployment facility in Docker.
+
+__Pre-requisite set up__
+
+User Service microservice depends on the Cassandra DataStore.
+
+1. Download & Install Cassandra onto your machine
+2. Run the init-db.cql setup script contents under `src/main/resources/db/scripts`
+
+Assuming the artifact is built from the Build section then do the following:
+
+Go to Cassandra installed directory location and run the following script to start up Cassandra server.
+
+```bash
+./cassandra
+```
+
+Lastly, run the microservice
+
+```bash
+java -jar target/user-service-1.0-SNAPSHOT-with-dependencies.jar
+```
+
 ### Deployment
 
 #### using Docker Compose
