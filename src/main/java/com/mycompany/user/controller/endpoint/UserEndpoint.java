@@ -26,34 +26,34 @@ public class UserEndpoint {
     private UserService userService;
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
-    public ResponseEntity getUsers() {
+    public ResponseEntity<?> getUsers() {
         List<User> users = userService.getUsers();
         List<UserResource> userResources = UserResourceMapper.mapUsersToUserResources(users);
         return ResponseEntity.ok(userResources);
     }
 
     @RequestMapping(value = "/user/create", method = RequestMethod.POST)
-    public ResponseEntity createUser(@RequestBody UserResource userResource) {
+    public ResponseEntity<?> createUser(@RequestBody UserResource userResource) {
         User user = UserResourceMapper.mapUserResourceToUser(userResource);
         userService.createUser(user);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "/user/{ssn}", method = RequestMethod.GET)
-    public ResponseEntity getUser(@PathVariable("ssn") String ssn) {
+    public ResponseEntity<?> getUser(@PathVariable("ssn") String ssn) {
         User user = userService.getUser(ssn);
         UserResource userResource = UserResourceMapper.mapUserToUserResource(user);
         return ResponseEntity.ok(userResource);
     }
 
     @RequestMapping(value = "/user/{ssn}/delete", method = RequestMethod.DELETE)
-    public ResponseEntity deleteUser(@PathVariable("ssn") String ssn) {
+    public ResponseEntity<?> deleteUser(@PathVariable("ssn") String ssn) {
         userService.deleteUser(ssn);
         return ResponseEntity.ok().build();
     }
 
     @RequestMapping(value = "/user/update", method = RequestMethod.POST)
-    public ResponseEntity updateUser(@RequestBody UserResource userResource) {
+    public ResponseEntity<?> updateUser(@RequestBody UserResource userResource) {
         User user = UserResourceMapper.mapUserResourceToUser(userResource);
         userService.updateUser(user);
         return ResponseEntity.ok().build();

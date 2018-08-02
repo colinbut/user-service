@@ -51,7 +51,7 @@ public class UserEndpointUTest {
         Mockito.when(userService.getUsers()).thenReturn(userList);
         PowerMockito.when(UserResourceMapper.mapUsersToUserResources(userList)).thenReturn(userResourcesList);
 
-        ResponseEntity responseEntity = classInTest.getUsers();
+        ResponseEntity<?> responseEntity = classInTest.getUsers();
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(userResourcesList, responseEntity.getBody());
@@ -67,7 +67,7 @@ public class UserEndpointUTest {
         PowerMockito.when(UserResourceMapper.mapUserResourceToUser(userResource)).thenReturn(user);
         Mockito.doNothing().when(userService).createUser(user);
 
-        ResponseEntity responseEntity = classInTest.createUser(userResource);
+        ResponseEntity<?> responseEntity = classInTest.createUser(userResource);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Mockito.verify(userService, Mockito.times(1)).createUser(user);
@@ -82,7 +82,7 @@ public class UserEndpointUTest {
 
         Mockito.when(userService.getUser(SSN)).thenReturn(user);
 
-        ResponseEntity responseEntity = classInTest.getUser(SSN);
+        ResponseEntity<?> responseEntity = classInTest.getUser(SSN);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertNotNull(responseEntity.getBody());
@@ -117,7 +117,7 @@ public class UserEndpointUTest {
         PowerMockito.when(UserResourceMapper.mapUserResourceToUser(userResource)).thenReturn(user);
         Mockito.doNothing().when(userService).updateUser(user);
 
-        ResponseEntity responseEntity = classInTest.updateUser(userResource);
+        ResponseEntity<?> responseEntity = classInTest.updateUser(userResource);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         Mockito.verify(userService, Mockito.times(1)).updateUser(user);
