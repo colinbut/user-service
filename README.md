@@ -54,6 +54,8 @@ java -jar target/user-service-1.0-SNAPSHOT-with-dependencies.jar
 
 ### Deployment
 
+*** Note - this section is still WIP
+
 #### using Docker Compose
 
 ```bash
@@ -65,6 +67,16 @@ docker-compose up
 
 #### Bringing User Service + Cassandra DB up individually
 
+Cassandra needs to be startup first as the microservice will try to connect to it on startup.
+
+__Cassandra DB__
+
+```bash
+cd docker;
+docker build -f dockerfiles/cassandra.db -t cassandra-db:1.0-SNAPSHOT .
+docker run cassandra-db:1.0-SNAPSHOT
+```
+
 __User Service__
 
 ```bash
@@ -73,14 +85,6 @@ cp target/user-service-1.0-SNAPSHOT-with-dependencies.jar docker/
 cd docker;
 docker build -f dockerfiles/userservice.app -t user-service:1.0-SNAPSHOT .
 docker run user-service:1.0-SNAPSHOT
-```
-
-__Cassandra DB__
-
-```bash
-cd docker;
-docker build -f dockerfiles/cassandra.db -t cassandra-db:1.0-SNAPSHOT .
-docker run cassandra-db:1.0-SNAPSHOT
 ```
 
 then link the two containers together so the User Service microservice can talk to the Cassandra db.
