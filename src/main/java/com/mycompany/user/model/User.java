@@ -15,6 +15,7 @@ public class User {
     private String firstname;
     private String surname;
     private Date dob;
+    private String email;
     private String address;
     private String postcode;
     private String city;
@@ -51,6 +52,14 @@ public class User {
     public void setDob(Date dob) {
         this.dob = dob;
     }
+
+    public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
 
     public String getAddress() {
         return address;
@@ -101,6 +110,7 @@ public class User {
             .append(firstname, user.firstname)
             .append(surname, user.surname)
             .append(dob, user.dob)
+            .append(email, user.email)
             .append(address, user.address)
             .append(postcode, user.postcode)
             .append(city, user.city)
@@ -115,6 +125,7 @@ public class User {
             .append(firstname)
             .append(surname)
             .append(dob)
+            .append(email)
             .append(address)
             .append(postcode)
             .append(city)
@@ -129,6 +140,7 @@ public class User {
             .append("firstname", firstname)
             .append("surname", surname)
             .append("dob", dob)
+            .append("email", email)
             .append("address", address)
             .append("postcode", postcode)
             .append("city", city)

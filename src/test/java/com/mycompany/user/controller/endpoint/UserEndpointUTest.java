@@ -92,6 +92,7 @@ public class UserEndpointUTest {
         assertEquals(user.getFirstname(), userResource.getFirstname());
         assertEquals(user.getSurname(), userResource.getSurname());
         assertEquals(user.getDob(), userResource.getDob());
+        assertEquals(user.getEmail(), userResource.getEmail());
         assertEquals(user.getAddress(), userResource.getAddress());
         assertEquals(user.getPostcode(), userResource.getPostcode());
         assertEquals(user.getCity(), userResource.getCity());

@@ -20,6 +20,7 @@ public final class UserTestHelper {
         user.setFirstname("Firstname");
         user.setSurname("Surname");
         user.setDob(new DateTime(2018, 1, 1, 12, 0, 0).toDate());
+        user.setEmail("person@email.address");
         user.setAddress("Address");
         user.setCity("City");
         user.setPostcode("Postcode");
@@ -33,6 +34,7 @@ public final class UserTestHelper {
         userResource.setFirstname("Firstname");
         userResource.setSurname("Surname");
         userResource.setDob(new DateTime(2018, 1, 1, 12, 0, 0).toDate());
+        userResource.setEmail("person@email.address");
         userResource.setAddress("Address");
         userResource.setCity("City");
         userResource.setPostcode("Postcode");

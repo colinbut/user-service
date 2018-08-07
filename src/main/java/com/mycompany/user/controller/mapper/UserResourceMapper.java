@@ -22,6 +22,7 @@ public final class UserResourceMapper {
         userResource.setFirstname(user.getFirstname());
         userResource.setSurname(user.getSurname());
         userResource.setDob(user.getDob());
+        userResource.setEmail(user.getEmail());
         userResource.setAddress(user.getAddress());
         userResource.setPostcode(user.getPostcode());
         userResource.setCity(user.getCity());
@@ -35,6 +36,7 @@ public final class UserResourceMapper {
         user.setFirstname(userResource.getFirstname());
         user.setSurname(userResource.getSurname());
         user.setDob(userResource.getDob());
+        user.setEmail(userResource.getEmail());
         user.setAddress(userResource.getAddress());
         user.setPostcode(userResource.getPostcode());
         user.setCity(userResource.getCity());
